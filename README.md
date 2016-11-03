@@ -1,0 +1,1 @@
+# copy-azurewebapp-wwwrootfolder-to-slot-via-vsts
