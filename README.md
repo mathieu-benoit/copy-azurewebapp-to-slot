@@ -1,9 +1,9 @@
 # Prerequisities
 - Azure Web App with Backups setup to a Blob Storage
 
-# ![VSTS Build Definition](/vsts/Build Definition.PNG)
+# VSTS Build Definition
 
-TODO image
+![VSTS Build Definition](/vsts/Build Definition.PNG)
 
 - Download Azure Blob Storage Backup file (Azure Powershell)
   - Script Path = scripts/DownloadAzureBlobStorageFile.ps1
