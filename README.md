@@ -1,7 +1,7 @@
 # Prerequisities
 - Azure Web App with Backups setup to a Blob Storage
 
-# [VSTS Build Definition](/vsts/Build Definition.png)
+# ![VSTS Build Definition](/vsts/Build Definition.PNG)
 
 TODO image
 
