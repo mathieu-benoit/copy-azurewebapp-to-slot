@@ -1,10 +1,12 @@
 This sample consists on documenting how you could copy the wwwroot folder content from one Azure Web App to one Slot by using Visual Studio Team Services (VSTS).
 There is no built-in feature for doing that currently, so with this sample it's the opportunity to play with VSTS ;)
 
+![Workflow Overview](/vsts/Workflow Overview.PNG)
+
 # Prerequisities
 - Have a VSTS project
 - Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage
-- Optional - GitHub account, I put the scripts on GitHub to share them as open-source but you could use any kind of repository with VSTS.
+- Optional - Have a GitHub account, I put the scripts on GitHub to share them as open-source but you could use any kind of repository with VSTS.
 
 # VSTS Build Definition
 
