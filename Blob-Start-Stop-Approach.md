@@ -29,7 +29,7 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 ## Build steps/tasks:
 
 - Download Azure Blob Storage Backup file (Azure Powershell)
-  - Script Path = scripts/[DownloadAzureBlobStorageFile.ps1](/script/DownloadAzureBlobStorageFile.ps1)
+  - Script Path = scripts/[DownloadAzureBlobStorageFile.ps1](/scripts/DownloadAzureBlobStorageFile.ps1)
   - Script Arguments = $(StorageAccountName) $(StorageAccountKey) $(ContainerName) $(BlobFileName) $(Agent.WorkFolder)
 - Extract files (Extract files)
   - Archive file patterns = $(Agent.WorkFolder)/*.zip
