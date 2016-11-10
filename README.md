@@ -1,24 +1,49 @@
-This sample consists on documenting how you could copy the wwwroot folder content from one Azure Web App to one Slot by using Visual Studio Team Services (VSTS).
-There is no built-in feature for doing that currently, so with this sample it's the opportunity to play with VSTS ;)
+This sample consists on documenting how you could restore a backup from one Azure Web App to one of its slot by using Visual Studio Team Services (VSTS).
+Two approaches are taken here, it's the opportunity to play with VSTS and Powershell:
+- First approach - Use the built-in Azure Web App Backup and Restore feature with the high level steps:
+  - Get the associated Powershell script;
+  - Do a Backup of the Azure Web App;
+  - Restore this Backup to one other slot.
+- Second approach - Use the Azure Web App Backup feature but restoring part of it, in our case, just the wwwroot:
+  - Get the associated Powershell scripts;
+  - Do a Backup of the Azure Web App;
+  - Get the associated Azure Blob file.
+  - Unzip this file;
+  - Stop 
+  - Upload by FTP the wwwroot folder to the associated slot folder.
 
-![Workflow Overview](/vsts/Workflow Overview.PNG)
+This is 2 different approaches to play with different Powershell scripts and VSTS tasks. Let's adapt them to your needs!
+
+![Workflow Overview](/vsts/Blob-Start-Stop-Approach - Workflow Overview.PNG)
 
 # Prerequisities
 - Have a VSTS project
-- Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage
-- Optional - Have a GitHub account, I put the scripts on GitHub to share them as open-source but you could use any kind of repository with VSTS.
+- Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage - manual (not automatic) is ok for the purpose of this demo.
+- Optional - Have a GitHub account, I put the scripts on GitHub to share them as open-source but you could use other kind of repository with VSTS.
 
-# VSTS Build Definition
+#First approach - "Built-in Backup/Restore feature"
 
-![VSTS Build Definition](/vsts/Build Definition.PNG)
+## VSTS Build Definition
 
-## Here are the variables of the VSTS Build Definition:
+TODO
+
+## VSTS Release Definition
+
+TODO
+
+#Second approach - "Backup and FTP upload of its subset"
+
+## VSTS Build Definition
+
+![VSTS Build Definition](/vsts/Blob-Start-Stop-Approach - Build Definition.PNG)
+
+### Here are the variables of the VSTS Build Definition:
 - StorageAccountName
 - StorageAccountKey
 - ContainerName
 - BlobFileName
 
-## Here are the steps/tasks of the VSTS Build Definition:
+### Here are the steps/tasks of the VSTS Build Definition:
 
 - Download Azure Blob Storage Backup file (Azure Powershell)
   - Script Path = scripts/DownloadAzureBlobStorageFile.ps1
@@ -37,16 +62,16 @@ There is no built-in feature for doing that currently, so with this sample it's 
   - Artifact Name = drop-ps1
   - Artifact Type = Server
   
-# VSTS Release Definition
+## VSTS Release Definition
 
-![VSTS Release Definition](/vsts/Release Definition.PNG)
+![VSTS Release Definition](/vsts/Blob-Start-Stop-Approach - Release Definition.PNG)
 
-## Here are the variables of the VSTS Release Definition:
+### Here are the variables of the VSTS Release Definition:
 - ResourceGroupName
 - WebAppName
 - Slot
 
-## Here are the steps/tasks of the VSTS Release Definition:
+### Here are the steps/tasks of the VSTS Release Definition:
 
 - Stop Slot (Azure Powershell)
   - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/StopAzureWebAppSlot.ps1
@@ -62,5 +87,5 @@ There is no built-in feature for doing that currently, so with this sample it's 
   - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/StartAzureWebAppSlot.ps1
   - Script Arguments = $(ResourceGroupName) $(WebAppName) $(Slot)
 
-Hope that helps and let's adapt by yourself this approach for your own needs and setups! ;)
+Hope that helps and let's adapt by yourself these 2 approaches for your own context, needs and setups! ;)
   
