@@ -19,3 +19,5 @@ TODO
 # VSTS Release Definition
 
 TODO
+
+Note: Like explained [here](https://azure.microsoft.com/en-us/documentation/articles/app-service-powershell-backup/) you could improve that by including database backup, setup Schedule automatic backup, etc. 

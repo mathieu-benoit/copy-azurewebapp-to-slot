@@ -29,7 +29,7 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 ## Build steps/tasks:
 
 - Download Azure Blob Storage Backup file (Azure Powershell)
-  - Script Path = scripts/DownloadAzureBlobStorageFile.ps1
+  - Script Path = scripts/[DownloadAzureBlobStorageFile.ps1](/script/DownloadAzureBlobStorageFile.ps1)
   - Script Arguments = $(StorageAccountName) $(StorageAccountKey) $(ContainerName) $(BlobFileName) $(Agent.WorkFolder)
 - Extract files (Extract files)
   - Archive file patterns = $(Agent.WorkFolder)/*.zip
@@ -57,7 +57,7 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 ## Release steps/tasks:
 
 - Stop Slot (Azure Powershell)
-  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/StopAzureWebAppSlot.ps1
+  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/[StopAzureWebAppSlot.ps1](/scripts/StopAzureWebAppSlot.ps1)
   - Script Arguments = $(ResourceGroupName) $(WebAppName) $(Slot)
 - FTP Upload (FTP Upload)
   - Source folder = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-unzip-files
@@ -67,6 +67,6 @@ This sample consists on using the Azure Web App Backup feature but restoring par
   - Overwrite = checked
   - Preserve file paths = checked
 - Start Slot (Azure Powershell)
-  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/StartAzureWebAppSlot.ps1
+  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/[StartAzureWebAppSlot.ps1](/scripts/StartAzureWebAppSlot.ps1)
   - Script Arguments = $(ResourceGroupName) $(WebAppName) $(Slot)
   
