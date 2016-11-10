@@ -1,10 +1,11 @@
 This sample consists on using the Azure Web App Backup feature but restoring part of it, in our case, just the wwwroot:
   - Get the associated Powershell scripts;
   - Do a Backup of the Azure Web App;
-  - Get the associated Azure Blob file.
+  - Get the associated Azure Blob file;
   - Unzip this file;
-  - Stop 
-  - Upload by FTP the wwwroot folder to the associated slot folder.
+  - Stop the Slot;
+  - Upload by FTP the wwwroot folder to the associated slot folder;
+  - Start the Slot.
 
 # Overview
 
@@ -19,13 +20,13 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 
 ![VSTS Build Definition](/images/Blob-Start-Stop-Approach - Build Definition.PNG)
 
-## Here are the variables of the VSTS Build Definition:
+## Build variables:
 - StorageAccountName
 - StorageAccountKey
 - ContainerName
 - BlobFileName
 
-## Here are the steps/tasks of the VSTS Build Definition:
+## Build steps/tasks:
 
 - Download Azure Blob Storage Backup file (Azure Powershell)
   - Script Path = scripts/DownloadAzureBlobStorageFile.ps1
@@ -48,12 +49,12 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 
 ![VSTS Release Definition](/images/Blob-Start-Stop-Approach - Release Definition.PNG)
 
-## Here are the variables of the VSTS Release Definition:
+## Release variables:
 - ResourceGroupName
 - WebAppName
 - Slot
 
-## Here are the steps/tasks of the VSTS Release Definition:
+## Release steps/tasks:
 
 - Stop Slot (Azure Powershell)
   - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/StopAzureWebAppSlot.ps1
