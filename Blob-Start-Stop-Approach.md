@@ -57,16 +57,16 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 ## Release steps/tasks:
 
 - Stop Slot (Azure Powershell)
-  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/[StopAzureWebAppSlot.ps1](/scripts/StopAzureWebAppSlot.ps1)
+  - Script Path = $(System.DefaultWorkingDirectory)/{build-name}/drop-ps1/[StopAzureWebAppSlot.ps1](/scripts/StopAzureWebAppSlot.ps1)
   - Script Arguments = $(ResourceGroupName) $(WebAppName) $(Slot)
 - FTP Upload (FTP Upload)
-  - Source folder = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-unzip-files
+  - Source folder = $(System.DefaultWorkingDirectory)/{build-name}/drop-unzip-files
   - File pattern = \**\**
   - Remote directory = /site/wwwroot
   - Clean remote directory = checked, if you want
   - Overwrite = checked
   - Preserve file paths = checked
 - Start Slot (Azure Powershell)
-  - Script Path = $(System.DefaultWorkingDirectory)/Prepare Copy Azure Web App backup to a Slot/drop-ps1/[StartAzureWebAppSlot.ps1](/scripts/StartAzureWebAppSlot.ps1)
+  - Script Path = $(System.DefaultWorkingDirectory)/{build-name}/drop-ps1/[StartAzureWebAppSlot.ps1](/scripts/StartAzureWebAppSlot.ps1)
   - Script Arguments = $(ResourceGroupName) $(WebAppName) $(Slot)
   

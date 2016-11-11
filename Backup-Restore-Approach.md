@@ -14,10 +14,33 @@ This sample consists on using the built-in Azure Web App Backup and Restore feat
 
 # VSTS Build Definition
 
-TODO
+![VSTS Build Definition](/images/Backup-Restore-Approach - Build Definition.PNG)
+
+## Build variables:
+- N/A
+
+## Build steps/tasks:
+- Copy Publish Artifact: drop-ps1 (Copy and Publish Build Artifact)
+  - Copy Root = scripts
+  - Content = *.ps1
+  - Artifact Name = drop-ps1
+  - Artifact Type = Server
 
 # VSTS Release Definition
 
-TODO
+![VSTS Release Definition](/images/Backup-Restore-Approach - Release Definition.PNG)
+
+## Release variables:
+- ResourceGroupName
+- WebAppName
+- Slot
+- StorageAccountName
+- ContainerName
+- BlobFileName
+
+## Release steps/tasks:
+- Restore backup to Slot (Azure Powershell)
+  - Script Path = $(System.DefaultWorkingDirectory)/{build-name}/drop-ps1/[RestoreAzureWebAppBackup.ps1](/scripts/RestoreAzureWebAppBackup.ps1)
+  - Script Arguments = $(ResourceGroupName) $(WebAppName) $(SlotName) $(StorageAccountName) $(ContainerName) $(BlobFileName)
 
 Note: Like explained [here](https://azure.microsoft.com/en-us/documentation/articles/app-service-powershell-backup/) you could improve that by including database backup, setup Schedule automatic backup, etc. 
