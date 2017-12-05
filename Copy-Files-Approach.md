@@ -8,9 +8,11 @@ This sample consists on using the Azure Web App Backup feature but restoring par
 - Start the Slot.
 
 # Prerequisities
-- Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage - manual (not automatic) is ok for the purpose of this demo.
-  - *You source Azure Web App should be at least in Standard SKU.*
+
 - Read general documentation about [Backup your Web App](https://docs.microsoft.com/azure/app-service/web-sites-backup)
+  - Be aware about [some requirements and restrictions](https://docs.microsoft.com/azure/app-service/web-sites-backup#requirements-and-restrictions).
+  - *For example: you source Azure Web App should be at least in Standard SKU.*
+- Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage - manual (not automatic) is ok for the purpose of this demo.
 
 # Script
 
