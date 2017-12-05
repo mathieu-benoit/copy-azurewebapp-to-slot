@@ -1,5 +1,6 @@
-This sample consists on documenting how you could restore a backup from one Azure Web App to one of its slot by using Visual Studio Team Services (VSTS).
-Two approaches are taken here, it's the opportunity to play with VSTS and Powershell:
+This sample consists on documenting how you could copy one Azure Web App to one slot by using PowerShell.
+
+3 approaches are taken here, it's the opportunity to play with Powershell:
 - [First approach](Backup-Restore-Approach.md) - Use the built-in Azure Web App Backup and Restore feature with the high level steps:
   - Get the associated Powershell script;
   - Restore one Backup to one other slot.
@@ -12,5 +13,6 @@ Two approaches are taken here, it's the opportunity to play with VSTS and Powers
   - Upload by FTP the wwwroot folder to the associated slot folder;
   - Start the Slot.
 
-This is 2 different approaches to play with different Powershell scripts and VSTS tasks.
-Hope that helps and let's adapt by yourself these 2 approaches for your own context, needs and setups! ;)
+This is 3 different approaches to play with different Powershell scripts.
+
+Hope that helps and let's adapt by yourself these 2 approaches for your own context, needs and setups!

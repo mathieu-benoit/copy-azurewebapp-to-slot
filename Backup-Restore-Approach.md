@@ -3,44 +3,26 @@ This sample consists on using the built-in Azure Web App Backup and Restore feat
   - Do a Backup of the Azure Web App;
   - Restore this Backup to one other slot.
 
-# Overview
-
-![Workflow Overview](/images/Backup-Restore-Approach - Workflow Overview.PNG)
-
 # Prerequisities
-- Have a VSTS project
+
 - Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage - manual (not automatic) is ok for the purpose of this demo.
-- Optional - Have a GitHub account, I put the scripts on GitHub to share them as open-source but you could use other kind of repository with VSTS.
+- Read general document about [Backup your Web App](https://docs.microsoft.com/en-us/azure/app-service/web-sites-backup)
 
-# VSTS Build Definition
+# Script
 
-![VSTS Build Definition](/images/Backup-Restore-Approach - Build Definition.PNG)
+```
+$ResourceGroupName = "TODO";
+$WebAppName = "TODO";
+$SlotName = "TODO";
+$StorageAccountName = "TODO";
+$ContainerName = "TODO";
+$BlobFileName = "TODO";
 
-## Build variables:
-- N/A
-
-## Build steps/tasks:
-- Copy Publish Artifact: drop-ps1 (Copy and Publish Build Artifact)
-  - Copy Root = scripts
-  - Content = *.ps1
-  - Artifact Name = drop-ps1
-  - Artifact Type = Server
-
-# VSTS Release Definition
-
-![VSTS Release Definition](/images/Backup-Restore-Approach - Release Definition.PNG)
-
-## Release variables:
-- ResourceGroupName
-- WebAppName
-- Slot
-- StorageAccountName
-- ContainerName
-- BlobFileName
-
-## Release steps/tasks:
-- Restore backup to Slot (Azure Powershell)
-  - Script Path = $(System.DefaultWorkingDirectory)/{build-name}/drop-ps1/[RestoreAzureWebAppBackup.ps1](/scripts/RestoreAzureWebAppBackup.ps1)
-  - Script Arguments = $(ResourceGroupName) $(WebAppName) $(SlotName) $(StorageAccountName) $(ContainerName) $(BlobFileName)
+#Login-AzureRmAccount;
+$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $ResourceGroupName -Name $StorageAccountName;
+$context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $storageAccountKey[0].Value;
+$sasUrl = New-AzureStorageContainerSASToken -Name $ContainerName -Permission rwdl -Context $context -ExpiryTime (Get-Date).AddDays(1) -FullUri;
+Restore-AzureRmWebAppBackup -ResourceGroupName $ResourceGroupName -Name $WebAppName -Slot $SlotName -StorageAccountUrl $sasUrl -BlobName $BlobFileName -Overwrite;
+```
 
 Note: Like explained [here](https://azure.microsoft.com/en-us/documentation/articles/app-service-powershell-backup/) you could improve that by including database backup, setup Schedule automatic backup, etc. 
