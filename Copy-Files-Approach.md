@@ -1,14 +1,16 @@
-This sample consists on using the Azure Web App Backup feature but restoring part of it, in our case, just the wwwroot:
-  - Do a Backup of the Azure Web App;
-  - Get the associated Azure Blob file;
-  - Unzip this file;
-  - Stop the Slot;
-  - Upload by FTP the wwwroot folder to the associated slot folder;
-  - Start the Slot.
+This sample consists on using the Azure Web App Backup feature but restoring part of it, in our case, just the `wwwroot`:
+
+- Do a Backup of the Azure Web App;
+- Get the associated Azure Blob file;
+- Unzip this file;
+- Stop the Slot;
+- Upload by FTP the `wwwroot` folder to the associated slot folder;
+- Start the Slot.
 
 # Prerequisities
 - Configure your Azure Web App (main Slot) with Backups setup to a Blob Storage - manual (not automatic) is ok for the purpose of this demo.
-- Read general document about [Backup your Web App](https://docs.microsoft.com/en-us/azure/app-service/web-sites-backup)
+  - *You source Azure Web App should be at least in Standard SKU.*
+- Read general documentation about [Backup your Web App](https://docs.microsoft.com/azure/app-service/web-sites-backup)
 
 # Script
 
